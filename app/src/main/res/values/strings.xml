@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Jonny Chat</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="todo">TODO</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="sign2_in">Login</string>
+    <string name="or">OR</string>
+    <string name="forgot_password">Forgot password ?</string>
+    <string name="new_user">New User?</string>
+    <string name="register">Register</string>
+    <!-- Strings used for fragments for navigation -->
+
+    <string name="sign_up2">Sign Up</string>
+    <string name="phone">Phone</string>
+    <string name="full_name">Full name</string>
+    <string name="log_in">Log in</string>
+    <string name="existing_user">Existing user?</string>
+    <string name="title_activity_register2">registerActivity2</string>
+    <string name="title_activity_emailverification">emailverification</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="show_password">Show Password</string>
+    <string name="this_is_demo_name">This is Demo Name</string>
+    <string name="this_is_email_name">This is Email Name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

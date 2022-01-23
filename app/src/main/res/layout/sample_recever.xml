@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="7dp"
+
+    android:background="@drawable/out_bubble"
+    android:maxWidth="310dp"
+    android:maxHeight="400dp"
+    android:minHeight="30dp">
+
+    <TextView
+        android:id="@+id/recevertime"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="3dp"
+        android:text="12:00 pm"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/recevermasg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginStart="4dp"
+        android:inputType="textLongMessage|textMultiLine"
+        android:maxWidth="370dp"
+        android:minWidth="50dp"
+        android:text="Helo moto"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/recevertime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.069" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="9dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
