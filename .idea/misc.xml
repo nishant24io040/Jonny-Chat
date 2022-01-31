@@ -20,7 +20,7 @@
         <entry key="app/src/main/res/drawable/iconik_background.xml" value="0.10520833333333333" />
         <entry key="app/src/main/res/drawable/icosendmasg_foreground.xml" value="0.20885416666666667" />
         <entry key="app/src/main/res/drawable/in_bubble.xml" value="0.20885416666666667" />
-        <entry key="app/src/main/res/drawable/out_bubble.xml" value="0.20885416666666667" />
+        <entry key="app/src/main/res/drawable/out_bubble.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/textarea.xml" value="0.20885416666666667" />
         <entry key="app/src/main/res/drawable/transition.xml" value="0.10520833333333333" />
         <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.2" />
@@ -49,8 +49,8 @@
         <entry key="app/src/main/res/layout/fragment_status.xml" value="0.19270833333333334" />
         <entry key="app/src/main/res/layout/fragment_status2.xml" value="0.19270833333333334" />
         <entry key="app/src/main/res/layout/iconic.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/sample_recever.xml" value="0.19270833333333334" />
-        <entry key="app/src/main/res/layout/sample_sender.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/sample_recever.xml" value="0.9" />
+        <entry key="app/src/main/res/layout/sample_sender.xml" value="0.67" />
         <entry key="app/src/main/res/layout/scrolling_bar.xml" value="0.22" />
         <entry key="app/src/main/res/layout/singlerow.xml" value="0.25" />
         <entry key="app/src/main/res/layout/singlerow2.xml" value="0.33" />

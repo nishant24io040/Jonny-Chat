@@ -28,7 +28,9 @@ public class FragmentAdapter extends FragmentPagerAdapter {
 
             default:return new ChatsFragment();
         }
+
     }
+
 
     @Override
     public int getCount() {

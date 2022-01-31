@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-
-    android:layout_marginStart="5dp"
-    android:layout_marginEnd="7dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    android:layout_marginBottom="15dp"
 
     android:background="@drawable/out_bubble"
     android:maxWidth="310dp"
@@ -16,10 +17,10 @@
     <TextView
         android:id="@+id/recevertime"
         android:layout_width="wrap_content"
-        android:layout_height="22dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="3dp"
-        android:text="12:00 pm"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="10dp"
+        android:text="Time"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -28,10 +29,10 @@
         android:id="@+id/recevermasg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_marginStart="4dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="5dp"
         android:inputType="textLongMessage|textMultiLine"
-        android:maxWidth="370dp"
+        android:maxWidth="270dp"
         android:minWidth="50dp"
         android:text="Helo moto"
         android:textSize="20sp"
@@ -46,5 +47,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="9dp" />
+        app:layout_constraintGuide_begin="16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

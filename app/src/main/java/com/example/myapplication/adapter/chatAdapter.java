@@ -72,6 +72,7 @@ public class chatAdapter extends RecyclerView.Adapter{
     }
 
 
+
     public class RecieverViewHolder extends RecyclerView.ViewHolder{
         TextView recieverMassage,recieverTime;
 

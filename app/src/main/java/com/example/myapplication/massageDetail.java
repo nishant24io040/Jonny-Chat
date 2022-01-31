@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -44,6 +46,7 @@ public class massageDetail extends AppCompatActivity {
     RecyclerView chatRecycler;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,10 +79,10 @@ public class massageDetail extends AppCompatActivity {
 
         final chatAdapter chattadapter = new chatAdapter(this, massageModals1);
         chatRecycler.setAdapter(chattadapter);
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setStackFromEnd(true);
         chatRecycler.setLayoutManager(layoutManager);
+
         final String senderRoom = senderId+receverId;
         final String receverRoom = receverId+senderId;
 
@@ -93,6 +96,7 @@ public class massageDetail extends AppCompatActivity {
 
                             MassageModal modal = snapshot1.getValue(MassageModal.class);
                             massageModals1.add(modal);
+                            chatRecycler.smoothScrollToPosition(massageModals1.size()-1);
                         }
                         chattadapter.notifyDataSetChanged();
                     }
@@ -129,8 +133,6 @@ public class massageDetail extends AppCompatActivity {
                 }
             });
         });
-
-
 
     }
     @Override

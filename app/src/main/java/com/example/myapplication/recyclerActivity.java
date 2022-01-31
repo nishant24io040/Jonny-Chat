@@ -39,7 +39,6 @@ public class recyclerActivity extends AppCompatActivity {
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(false);
         appBarLayout = findViewById(R.id.appBarLayout);
-
         mAuth = FirebaseAuth.getInstance();
         tabLayout =findViewById(R.id.tablayout);
         viewPager =findViewById(R.id.viewpager);
