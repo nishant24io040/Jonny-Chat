@@ -78,8 +78,8 @@ public class massageDetail extends AppCompatActivity {
         chatRecycler.setAdapter(chattadapter);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setStackFromEnd(true);
         chatRecycler.setLayoutManager(layoutManager);
-
         final String senderRoom = senderId+receverId;
         final String receverRoom = receverId+senderId;
 
@@ -104,6 +104,11 @@ public class massageDetail extends AppCompatActivity {
                 });
 
         send.setOnClickListener(view ->{
+
+            FirebaseDatabase.getInstance().getReference().child("user")
+                    .child(mAuth.getUid()).child("uId").child(receverId).setValue(receverId);
+
+
             String massage = masgText.getText().toString();
             MassageModal massagemodal = new MassageModal(senderId,massage);
             massagemodal.setTimeStamp(new Date().getTime());

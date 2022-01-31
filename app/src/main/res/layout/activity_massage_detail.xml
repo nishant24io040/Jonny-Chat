@@ -4,27 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#C6C6C6"
+    android:background="@drawable/cats2"
     tools:context=".massageDetail">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Chatrecyclerview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#C6C6C6"
-        app:layout_constraintBottom_toTopOf="@+id/guideline12"
+        android:background="#00CDCDCD"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/statusbar"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/statusbar" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/statusbar"
         style="@style/Theme.AppCompat.NoActionBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#263571"
+        android:background="#D32D88"
+
         android:theme="@style/Theme.AppCompat.NoActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -107,35 +107,34 @@
         android:layout_width="409dp"
         android:layout_height="51dp"
         android:layout_marginEnd="2dp"
-        android:background="#C6C6C6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Chatrecyclerview"
-        app:layout_constraintVertical_bias="0.991">
+        app:layout_constraintStart_toStartOf="parent">
 
         <EditText
             android:id="@+id/masgtext"
-            android:layout_width="310dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="35dp"
-            android:background="@drawable/textarea"
+            android:layout_width="308dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="36dp"
             android:ems="10"
             android:hint="Enter Your Massege"
             android:inputType="textPersonName"
             android:minHeight="32dp"
             android:paddingStart="30dp"
+            android:elevation="15dp"
             android:textSize="14sp"
+            android:background="@drawable/background"
             app:layout_constraintBottom_toBottomOf="@+id/sendButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/sendButton"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.666" />
 
         <ImageView
             android:id="@+id/sendButton"
             android:layout_width="47dp"
             android:layout_height="31dp"
             android:scaleType="centerInside"
+            android:elevation="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -144,13 +143,6 @@
             app:srcCompat="@drawable/icons96" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.93" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

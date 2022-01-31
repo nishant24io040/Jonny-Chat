@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.myapplication.adapter.FragmentAdapter;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -24,6 +26,7 @@ public class recyclerActivity extends AppCompatActivity {
     ViewPager viewPager;
     Toolbar toolbar;
     FirebaseAuth mAuth;
+    AppBarLayout appBarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +38,14 @@ public class recyclerActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(false);
+        appBarLayout = findViewById(R.id.appBarLayout);
 
         mAuth = FirebaseAuth.getInstance();
         tabLayout =findViewById(R.id.tablayout);
         viewPager =findViewById(R.id.viewpager);
         viewPager.setAdapter(new FragmentAdapter(getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
+
     }
 
     @Override
@@ -61,6 +66,10 @@ public class recyclerActivity extends AppCompatActivity {
                 Intent intent = new Intent(recyclerActivity.this , Dashboard.class);
                 startActivity(intent);
                 break;
+            case R.id.findFriends:
+                Intent intent2 = new Intent(recyclerActivity.this , wholeusers.class);
+                startActivity(intent2);
+                break;
 
             case R.id.setting:
                 Toast.makeText(this, "Settings is open", Toast.LENGTH_SHORT).show();
@@ -75,5 +84,13 @@ public class recyclerActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
     }
 }

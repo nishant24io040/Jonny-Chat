@@ -12,10 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.Adapter;
 import com.example.myapplication.databinding.FragmentBlankBinding;
+import com.example.myapplication.model.MassageModal;
 import com.example.myapplication.model.UserModal;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -61,18 +63,38 @@ public class ChatsFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    UserModal user2 = dataSnapshot.getValue(UserModal.class);
+                    final UserModal user2 = dataSnapshot.getValue(UserModal.class);
                     assert user2 != null;
                     user2.setUid(dataSnapshot.getKey());
-                    list.add(user2);
-                }
-                for (int i=0; i<list.size(); i++){
-                    if(list.get(i).getEmail().equals(puid)) {
-                        list.remove(i);
-                    }
-                }
+                    FirebaseDatabase.getInstance().getReference().child("user").child(mAuth.getUid())
+                            .child("uId").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot1) {
 
-                adapter.notifyDataSetChanged();
+                            for (DataSnapshot dshot : snapshot1.getChildren()){
+                                String u = dshot.getValue(String.class);
+                                if (u.equals(user2.getUid())){
+                                    list.add(user2);
+                                }
+                            }
+                            adapter.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                }
+//                for (int i=0; i<list.size(); i++){
+//                    for (int j=1; j< list.size()-1; j++){
+//                        if (list.get(i).getUid() == list.get(j).getUid()){
+//                            list.remove(j);
+//                        }
+//                    }
+//                }
+//                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -80,6 +102,8 @@ public class ChatsFragment extends Fragment {
 
             }
         });
+
+
 
         return binding.getRoot();
     }

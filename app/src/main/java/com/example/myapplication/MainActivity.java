@@ -33,10 +33,7 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView textView1,email,password;
-    Button login,getLogin;
-    ProgressBar progressBar;
-    CheckBox Spassword;
+    Button getLogin;
     private FirebaseAuth mAuth;
     GoogleSignInClient mGoogleSignInClient;
     FirebaseDatabase database;
@@ -51,12 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        textView1 = findViewById(R.id.registering);
-        email = findViewById(R.id.editTextTextEmailAddress);
-        password = findViewById(R.id.editTextTextPassword);
-        login = findViewById(R.id.button);
-        progressBar = findViewById(R.id.progressBar2);
-        Spassword = findViewById(R.id.checkBox);
+
         getLogin = findViewById(R.id.glogin);
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -72,55 +64,53 @@ public class MainActivity extends AppCompatActivity {
         }
 
         getLogin.setOnClickListener(view -> signIn());
-
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        textView1.setOnClickListener(view -> {
-            Intent intent = new Intent( getApplicationContext() , registerActivity2.class);
-            startActivity(intent);
-        });
+//        textView1.setOnClickListener(view -> {
+//            Intent intent = new Intent( getApplicationContext() , registerActivity2.class);
+//            startActivity(intent);
+//        });
 
-        Spassword.setOnCheckedChangeListener((compoundButton, b) -> {
-            if (b){
-                password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-            }
-            else {
-                password.setTransformationMethod(PasswordTransformationMethod.getInstance());
-            }
-        });
+//        Spassword.setOnCheckedChangeListener((compoundButton, b) -> {
+//            if (b){
+//                password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+//            }
+//            else {
+//                password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+//            }
+//        });
 
-        login.setOnClickListener(view -> {
-            progressBar.setVisibility(View.VISIBLE);
-            String Email=email.getText().toString();
-            String Password = password.getText().toString();
-            if(TextUtils.isEmpty(Email)){
-                email.setError("Email is Required");
-                progressBar.setVisibility(View.INVISIBLE);
-                return;
-            }
-            if(Password.length()<6){
-                password.setError("Password is Required");
-                progressBar.setVisibility(View.INVISIBLE);
-                return;
-            }
-            mAuth.signInWithEmailAndPassword(Email,Password).addOnCompleteListener(MainActivity.this, task -> {
-                if (task.isSuccessful()) {
-                    progressBar.setVisibility(View.INVISIBLE);
-                    email.setText("");
-                    password.setText("");
-                    Intent intent2 = new Intent(getApplicationContext() , recyclerActivity.class);
-                    startActivity(intent2);
-                }
-                else {
-                    progressBar.setVisibility(View.INVISIBLE);
-                    email.setText("");
-                    password.setText("");
-                    Toast.makeText(getApplicationContext(), ""+task.getException(), Toast.LENGTH_SHORT).show();
-                }
-            });
+//        login.setOnClickListener(view -> {
+//            progressBar.setVisibility(View.VISIBLE);
+//            String Email=email.getText().toString();
+//            String Password = password.getText().toString();
+//            if(TextUtils.isEmpty(Email)){
+//                email.setError("Email is Required");
+//                progressBar.setVisibility(View.INVISIBLE);
+//                return;
+//            }
+//            if(Password.length()<6){
+//                password.setError("Password is Required");
+//                progressBar.setVisibility(View.INVISIBLE);
+//                return;
+//            }
+//            mAuth.signInWithEmailAndPassword(Email,Password).addOnCompleteListener(MainActivity.this, task -> {
+//                if (task.isSuccessful()) {
+//                    progressBar.setVisibility(View.INVISIBLE);
+//                    email.setText("");
+//                    password.setText("");
+//                    Intent intent2 = new Intent(getApplicationContext() , recyclerActivity.class);
+//                    startActivity(intent2);
+//                }
+//                else {
+//                    progressBar.setVisibility(View.INVISIBLE);
+//                    email.setText("");
+//                    password.setText("");
+//                    Toast.makeText(getApplicationContext(), ""+task.getException(), Toast.LENGTH_SHORT).show();
+//                }
+//            });
 
-        });
-
+//        });
     }
     int RC_SIGN_IN = 65;
     private void signIn() {
@@ -155,21 +145,10 @@ public class MainActivity extends AppCompatActivity {
 
                         UserModal users = new UserModal();
 
-                        users.setUid(user.getUid());
-                        users.setName(user.getDisplayName());
-                        users.setPropic(Objects.requireNonNull(user.getPhotoUrl()).toString());
-                        users.setEmail(user.getEmail());
+//                        users.setUid(user.getUid());
+//                        users.setEmail(user.getEmail());
+//                        database.getReference().child("user").child(users.getUid()).setValue(user.);
 
-                        mAuth.fetchSignInMethodsForEmail((users.getEmail()))
-                                .addOnCompleteListener(task1 -> {
-                                    boolean isNewUser = (task1.getResult().getSignInMethods()).isEmpty();
-                                    if (isNewUser) {
-                                        Toast.makeText(getApplicationContext(), "Is New User!" , Toast.LENGTH_SHORT).show();
-                                        database.getReference().child("user").child(users.getUid()).setValue(users);
-                                    } else {
-                                        Toast.makeText(getApplicationContext(), "Welcome" , Toast.LENGTH_SHORT).show();
-                                    }
-                                });
                         Intent intent = new Intent(MainActivity.this , recyclerActivity.class);
                         startActivity(intent);
 

@@ -2,6 +2,7 @@ package com.example.myapplication.model;
 
 public class UserModal {
     String propic,name,phone,password,lastmasg,email,Uid;
+    childModal n;
 
     public UserModal() {
     }
