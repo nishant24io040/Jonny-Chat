@@ -16,9 +16,15 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.myapplication.adapter.FragmentAdapter;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import java.util.HashMap;
+import java.util.Objects;
 
 public class recyclerActivity extends AppCompatActivity {
 
@@ -44,6 +50,16 @@ public class recyclerActivity extends AppCompatActivity {
         viewPager =findViewById(R.id.viewpager);
         viewPager.setAdapter(new FragmentAdapter(getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
+
+        FirebaseMessaging.getInstance().getToken().addOnSuccessListener(new OnSuccessListener<String>() {
+            @Override
+            public void onSuccess(String s) {
+                HashMap<String,Object> map = new HashMap<>();
+                map.put("token",s);
+                FirebaseDatabase.getInstance().getReference().child("user")
+                        .child(Objects.requireNonNull(mAuth.getUid())).updateChildren(map);
+            }
+        });
 
     }
 

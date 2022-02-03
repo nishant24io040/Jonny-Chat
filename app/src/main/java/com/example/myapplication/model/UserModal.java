@@ -1,8 +1,18 @@
 package com.example.myapplication.model;
 
 public class UserModal {
-    String propic,name,phone,password,lastmasg,email,Uid;
-    childModal n;
+    String propic;
+    String name;
+    String phone;
+    String password;
+    String lastmasg;
+    String email;
+    String Uid;
+    String token;
+
+
+
+
 
     public UserModal() {
     }
@@ -89,5 +99,13 @@ public class UserModal {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

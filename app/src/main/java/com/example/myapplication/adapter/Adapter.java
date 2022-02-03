@@ -72,6 +72,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
             intent.putExtra("userid" , user1.getUid());
             intent.putExtra("dp" , user1.getPropic());
             intent.putExtra("name" , user1.getName());
+            intent.putExtra("token" , user1.getToken());
+            intent.putExtra("title" , "null");
 
             context.startActivity(intent);
 

@@ -22,6 +22,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.myapplication.adapter.chatAdapter;
 import com.example.myapplication.model.MassageModal;
@@ -32,8 +38,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class massageDetail extends AppCompatActivity {
 
@@ -66,6 +76,8 @@ public class massageDetail extends AppCompatActivity {
         String receverId = getIntent().getStringExtra("userid");
         String Propic = getIntent().getStringExtra("dp");
         String NameId = getIntent().getStringExtra("name");
+        String title = getIntent().getStringExtra("title");
+        String Token = getIntent().getStringExtra("token");
 
         Glide.with(massageDetail.this).load(Propic).circleCrop().into(Profile);
         UserName.setText(NameId);
@@ -127,7 +139,12 @@ public class massageDetail extends AppCompatActivity {
                             .setValue(massagemodal).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
-
+                            if (!title.equals("null")){
+                            sendNotification(title,massagemodal.getMassage(),Token);
+                            }
+                            else {
+                                sendNotification(mAuth.getCurrentUser().getDisplayName(),massagemodal.getMassage(),Token);
+                            }
                         }
                     });
                 }
@@ -135,6 +152,51 @@ public class massageDetail extends AppCompatActivity {
         });
 
     }
+
+    public void sendNotification(String name,String massage,String token){
+        try {
+            RequestQueue queue = Volley.newRequestQueue(this);
+            String url = "https://fcm.googleapis.com/fcm/send";
+
+            JSONObject object = new JSONObject();
+            object.put("title",name);
+            object.put("body",massage);
+
+            JSONObject notificationData = new JSONObject();
+            notificationData.put("notification",object);
+            notificationData.put("to",token);
+
+            JsonObjectRequest request = new JsonObjectRequest(url, notificationData,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Toast.makeText(massageDetail.this, "congrats", Toast.LENGTH_SHORT).show();
+                        }
+                    }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(massageDetail.this, error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    }
+            }){
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    HashMap<String,String> map = new HashMap<>();
+                    String key = "Key=AAAAETrq4-4:APA91bHpvdKuO0xfstPwb1I84pugOuPaiTskW1d0Y8xir2MSSvesXzNSX4I6yF6kRFgUuGK4vVfa7tps1UCVUuBD02Sd1WdbvBRvezbhuH-i8Mk4IAN5v9Ij9tJ8wr2cbRWdFDSs_SWq";
+                    map.put("Authorization",key);
+                    map.put("Content-Type","application/json");
+                    return map;
+                }
+            };
+            queue.add(request);
+        }
+        catch (Exception ex){
+
+        }
+    }
+
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 import com.example.myapplication.massageDetail;
 import com.example.myapplication.model.UserModal;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -46,6 +47,8 @@ public class fAdapter extends RecyclerView.Adapter<fAdapter.Holder> {
             intent.putExtra("userid" , user1.getUid());
             intent.putExtra("dp" , user1.getPropic());
             intent.putExtra("name" , user1.getName());
+            intent.putExtra("title" , (FirebaseAuth.getInstance().getCurrentUser().getDisplayName() +" Send's Requested Message "));
+            intent.putExtra("token" , user1.getToken());
 
             context.startActivity(intent);
 

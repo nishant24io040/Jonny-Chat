@@ -37,7 +37,7 @@ import java.util.Calendar;
 import java.util.Objects;
 
 public class Dashboard extends AppCompatActivity {
-    TextView email;
+    TextView name;
     FirebaseAuth mAuth;
     ImageView img;
     Button button,savechanges;
@@ -51,10 +51,12 @@ public class Dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         mAuth = FirebaseAuth.getInstance();
-        email = findViewById(R.id.textView4);
+        name = findViewById(R.id.fullname);
         img = findViewById(R.id.imageView25);
         button = findViewById(R.id.button3);
         savechanges = findViewById(R.id.button4);
+        Glide.with(Dashboard.this).load(R.drawable.jumper).circleCrop().into(img);
+        Toast.makeText(this, "Upload Your Image", Toast.LENGTH_SHORT).show();
 
 //        if(img.getVisibility() == 0){
 //
@@ -69,7 +71,7 @@ public class Dashboard extends AppCompatActivity {
 //            database.getReference().child("user").child(users.getUid()).setValue(users);
 //        }
 
-        email.setText(mAuth.getCurrentUser().getEmail());
+        name.setText(mAuth.getCurrentUser().getDisplayName());
         database.getReference().child("user").child(mAuth.getCurrentUser().getUid())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -101,7 +103,7 @@ public class Dashboard extends AppCompatActivity {
 
                             Intent intent=new Intent(Intent.ACTION_PICK);
                             intent.setType("image/*");
-                            startActivityForResult(Intent.createChooser(intent,"Select Image File"),2);
+                            startActivityForResult(Intent.createChooser(intent,"Upload DP"),2);
                         }
 
                         @Override
@@ -136,6 +138,9 @@ public class Dashboard extends AppCompatActivity {
                         progressDialog.setMessage("Uploaded"+(int)precent+"%");
                     });
             savechanges.setVisibility(View.INVISIBLE);
+            Intent intent = new Intent(Dashboard.this,recyclerActivity.class);
+            Toast.makeText(this, "First Add Friends to your Chat from Find Friends", Toast.LENGTH_LONG).show();
+            startActivity(intent);
         });
 
 
